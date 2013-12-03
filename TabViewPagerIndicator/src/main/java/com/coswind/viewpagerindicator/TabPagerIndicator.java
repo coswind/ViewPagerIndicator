@@ -1,6 +1,7 @@
 package com.coswind.viewpagerindicator;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v4.view.PagerAdapter;
@@ -42,7 +43,11 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
         // Add Tab Layout.
         addView(mTabLayout, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
 
-        mPaint.setColor(getResources().getColor(R.color.blue));
+        TypedArray a = context.obtainStyledAttributes(null,
+                new int[] { R.attr.bottomIndicatorColor },
+                R.attr.tabPageIndicatorStyle, 0);
+        mPaint.setColor(a.getColor(0, R.color.blue));
+        a.recycle();
 
         setWillNotDraw(false);
     }
