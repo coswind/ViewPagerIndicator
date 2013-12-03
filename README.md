@@ -5,4 +5,4 @@ TabViewPagerIndicator
 
 ##APK
 
-[Apk](https://github.com/coswind/TabViewPagerIndicator/raw/master/TabViewPagerIndicator.apk)
+[TabViewPagerIndicator.apk](https://github.com/coswind/TabViewPagerIndicator/raw/master/TabViewPagerIndicator.apk)
