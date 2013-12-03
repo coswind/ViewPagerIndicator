@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple">#9933CC</color>
+    <color name="light_purple">#AA66CC</color>
 </resources>

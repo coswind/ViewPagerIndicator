@@ -2,4 +2,5 @@
 <resources>
     <attr name="tabPageIndicatorStyle" format="reference"/>
     <attr name="bottomIndicatorColor" format="color" />
+    <attr name="bottomIndicatorHeight" format="dimension" />
 </resources>

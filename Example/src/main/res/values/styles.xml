@@ -14,5 +14,6 @@
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
         <item name="bottomIndicatorColor">@color/purple</item>
+        <item name="bottomIndicatorHeight">3dp</item>
     </style>
 </resources>

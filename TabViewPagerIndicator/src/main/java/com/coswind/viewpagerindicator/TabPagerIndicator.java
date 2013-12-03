@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -28,6 +30,7 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
     private float mPositionOffset;
     private int mSelectedTabIndex;
     private ViewPager mViewPager;
+    private final BottomView mBottomView;
 
     private final IcsLinearLayout mTabLayout;
 
@@ -39,17 +42,25 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
         super(context, attrs);
 
         mTabLayout = new IcsLinearLayout(context, R.attr.tabPageIndicatorStyle);
+        mBottomView = new BottomView(context);
 
         // Add Tab Layout.
         addView(mTabLayout, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
 
-        TypedArray a = context.obtainStyledAttributes(null,
-                new int[] { R.attr.bottomIndicatorColor },
-                R.attr.tabPageIndicatorStyle, 0);
-        mPaint.setColor(a.getColor(0, R.color.blue));
-        a.recycle();
 
-        setWillNotDraw(false);
+        TypedArray a = context.obtainStyledAttributes(null,
+                new int[] { R.attr.bottomIndicatorColor,
+                            R.attr.bottomIndicatorHeight },
+                R.attr.tabPageIndicatorStyle, 0);
+
+        mPaint.setColor(a.getColor(0, R.color.blue));
+
+        float bottomViewHeightInDp = a.getDimension(1, R.dimen.default_botton_view_height);
+        int bottomViewHeightInPx = (int) (getResources().getDisplayMetrics().density * bottomViewHeightInDp + 0.5f);
+        // Add Bottom View.
+        addView(mBottomView, new LayoutParams(MATCH_PARENT, bottomViewHeightInPx, Gravity.BOTTOM));
+
+        a.recycle();
     }
 
     public void setViewPager(ViewPager viewPager) {
@@ -108,18 +119,6 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
         mTabLayout.addView(tabView, new LinearLayout.LayoutParams(0, MATCH_PARENT, 1));
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-
-        float pageWidth = (getWidth() - mTabLayout.getDividerWidth() * 2) / (1f * mTabLayout.getChildCount());
-        float left = pageWidth * mPositionOffset + mTabLayout.getChildAt(mSelectedTabIndex).getLeft();
-        float right = left + pageWidth;
-        float top = getHeight() - 6;
-        float bottom = getHeight();
-        canvas.drawRect(left, top, right, bottom, mPaint);
-    }
-
     public void setCurrentItem(int index) {
         mSelectedTabIndex = index;
 
@@ -130,7 +129,7 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
     public void onPageScrolled(int i, float v, int i2) {
         mSelectedTabIndex = i;
         mPositionOffset = v;
-        invalidate();
+        mBottomView.invalidate();
     }
 
     @Override
@@ -161,6 +160,25 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
         public int getIndex() {
             return mIndex;
+        }
+    }
+
+    private class BottomView extends View {
+        public BottomView(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+
+            TabView tabView = (TabView) mTabLayout.getChildAt(mSelectedTabIndex);
+            float pageWidth = tabView.getWidth();
+            float left = pageWidth * mPositionOffset + tabView.getLeft();
+            float right = left + pageWidth;
+            float bottom = getHeight();
+
+            canvas.drawRect(left, 0, right, bottom, mPaint);
         }
     }
 }
