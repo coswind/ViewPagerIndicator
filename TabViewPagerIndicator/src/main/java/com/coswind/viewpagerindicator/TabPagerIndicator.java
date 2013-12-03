@@ -1,6 +1,8 @@
 package com.coswind.viewpagerindicator;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -20,7 +22,9 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageChangeListener {
     private static final CharSequence EMPTY_TITLE = "";
 
-    private int mMaxTabWidth;
+    private final Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    private float mPositionOffset;
     private int mSelectedTabIndex;
     private ViewPager mViewPager;
 
@@ -37,6 +41,10 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
         // Add Tab Layout.
         addView(mTabLayout, new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+
+        mPaint.setColor(getResources().getColor(R.color.blue));
+
+        setWillNotDraw(false);
     }
 
     public void setViewPager(ViewPager viewPager) {
@@ -95,6 +103,18 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
         mTabLayout.addView(tabView, new LinearLayout.LayoutParams(0, MATCH_PARENT, 1));
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        float pageWidth = (getWidth() - mTabLayout.getDividerWidth() * 2) / (1f * mTabLayout.getChildCount());
+        float left = pageWidth * mPositionOffset + mTabLayout.getChildAt(mSelectedTabIndex).getLeft();
+        float right = left + pageWidth;
+        float top = getHeight() - 6;
+        float bottom = getHeight();
+        canvas.drawRect(left, top, right, bottom, mPaint);
+    }
+
     public void setCurrentItem(int index) {
         mSelectedTabIndex = index;
 
@@ -103,7 +123,9 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
     @Override
     public void onPageScrolled(int i, float v, int i2) {
-
+        mSelectedTabIndex = i;
+        mPositionOffset = v;
+        invalidate();
     }
 
     @Override

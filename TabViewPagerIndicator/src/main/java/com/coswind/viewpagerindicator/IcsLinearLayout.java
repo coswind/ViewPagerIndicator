@@ -179,4 +179,8 @@ class IcsLinearLayout extends LinearLayout {
         }
         return false;
     }
+
+    public int getDividerWidth() {
+        return mDividerWidth;
+    }
 }
