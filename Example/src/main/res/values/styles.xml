@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Styled" parent="android:Theme.NoTitleBar">
+        <item name="tabPageIndicatorStyle">@style/CustomTabPagerIndicator</item>
+    </style>
+
+    <style name="CustomTabPagerIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:textColor">#ff50559e</item>
+        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
+        <item name="android:dividerPadding" tools:ignore="NewApi">10dp</item>
+        <item name="android:showDividers" tools:ignore="NewApi">middle</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+</resources>
