@@ -7,17 +7,14 @@ import android.graphics.Paint;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * Created by coswind on 12/3/13.
@@ -56,7 +53,7 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
         mPaint.setColor(a.getColor(0, R.color.blue));
 
-        float bottomViewHeightInDp = a.getDimension(1, R.dimen.default_botton_view_height);
+        float bottomViewHeightInDp = a.getDimension(1, R.dimen.default_bottom_view_height);
         int bottomViewHeightInPx = (int) (getResources().getDisplayMetrics().density * bottomViewHeightInDp + 0.5f);
         // Add Bottom View.
         addView(mBottomView, new LayoutParams(MATCH_PARENT, bottomViewHeightInPx, Gravity.BOTTOM));

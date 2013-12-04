@@ -13,7 +13,7 @@
         <item name="android:textSize">12sp</item>
         <item name="android:maxLines">1</item>
         <item name="bottomIndicatorColor">@color/blue</item>
-        <item name="bottomIndicatorHeight">@dimen/default_botton_view_height</item>
+        <item name="bottomIndicatorHeight">@dimen/default_bottom_view_height</item>
     </style>
 
     <style name="TextAppearance.TabPageIndicator" parent="Widget">

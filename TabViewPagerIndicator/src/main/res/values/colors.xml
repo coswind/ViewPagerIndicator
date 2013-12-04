@@ -3,9 +3,6 @@
     <color name="light_blue">#33B5E5</color>
     <color name="blue">#0099CC</color>
 
-    <color name="purple">#9933CC</color>
-    <color name="light_purple">#AA66CC</color>
-
     <color name="lightest_gray">#ffe5e5e5</color>
     <color name="lighter_gray">#ff999999</color>
     <color name="light_gray">#ff737373</color>
@@ -13,13 +10,4 @@
     <color name="dark_gray">#ff333333</color>
     <color name="darker_gray">#ff212121</color>
     <color name="darkest_gray">#ff191919</color>
-
-    <color name="background_holo_dark">#ff000000</color>
-    <color name="background_holo_light">#fff3f3f3</color>
-    <color name="bright_foreground_holo_dark">@color/background_holo_light</color>
-    <color name="bright_foreground_holo_light">@color/background_holo_dark</color>
-    <color name="bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
-    <color name="bright_foreground_disabled_holo_light">#ffb2b2b2</color>
-    <color name="bright_foreground_inverse_holo_dark">@color/bright_foreground_holo_light</color>
-    <color name="bright_foreground_inverse_holo_light">@color/bright_foreground_holo_dark</color>
 </resources>
