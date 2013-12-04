@@ -19,6 +19,10 @@ And you can use the artifacts like this:
         compile 'com.android.support:support-v4:18.0.0+'
         compile 'com.coswind.viewpagerindicator:viewpagerindicator:1.0-SNAPSHOT'
     }
+    
+Sample project here:
+
+[Sample Project](https://github.com/coswind/TestTabViewPagerIndicator)
 
 ##APK [Android 2.3+]
 
