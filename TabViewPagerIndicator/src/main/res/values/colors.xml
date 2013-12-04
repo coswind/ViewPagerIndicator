@@ -6,6 +6,14 @@
     <color name="purple">#9933CC</color>
     <color name="light_purple">#AA66CC</color>
 
+    <color name="lightest_gray">#ffe5e5e5</color>
+    <color name="lighter_gray">#ff999999</color>
+    <color name="light_gray">#ff737373</color>
+    <color name="mid_gray">#ff666666</color>
+    <color name="dark_gray">#ff333333</color>
+    <color name="darker_gray">#ff212121</color>
+    <color name="darkest_gray">#ff191919</color>
+
     <color name="background_holo_dark">#ff000000</color>
     <color name="background_holo_light">#fff3f3f3</color>
     <color name="bright_foreground_holo_dark">@color/background_holo_light</color>

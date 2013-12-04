@@ -29,6 +29,7 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
     private float mPositionOffset;
     private int mSelectedTabIndex;
+    private int mScrolledTabIndex;
     private ViewPager mViewPager;
     private final BottomView mBottomView;
 
@@ -127,8 +128,9 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
 
     @Override
     public void onPageScrolled(int i, float v, int i2) {
-        mSelectedTabIndex = i;
+        mScrolledTabIndex = i;
         mPositionOffset = v;
+
         mBottomView.invalidate();
     }
 
@@ -164,6 +166,9 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
     }
 
     private class BottomView extends View {
+        private float pageWidth = 0;
+        private int dividerWidth;
+
         public BottomView(Context context) {
             super(context);
         }
@@ -172,9 +177,13 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
 
-            TabView tabView = (TabView) mTabLayout.getChildAt(mSelectedTabIndex);
-            float pageWidth = tabView.getWidth();
-            float left = pageWidth * mPositionOffset + tabView.getLeft();
+            if (pageWidth == 0) {
+                TabView tabView = (TabView) mTabLayout.getChildAt(mScrolledTabIndex);
+                pageWidth = tabView.getWidth();
+                dividerWidth = mTabLayout.getDividerWidth();
+            }
+
+            float left = pageWidth * (mPositionOffset + mScrolledTabIndex) + (mScrolledTabIndex - 1) * dividerWidth;
             float right = left + pageWidth;
             float bottom = getHeight();
 
