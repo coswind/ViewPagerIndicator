@@ -180,7 +180,7 @@ public class TabPagerIndicator extends FrameLayout implements ViewPager.OnPageCh
                 dividerWidth = mTabLayout.getDividerWidth();
             }
 
-            float left = pageWidth * (mPositionOffset + mScrolledTabIndex) + (mScrolledTabIndex - 1) * dividerWidth;
+            float left = pageWidth * (mPositionOffset + mScrolledTabIndex) + mScrolledTabIndex * dividerWidth;
             float right = left + pageWidth;
             float bottom = getHeight();
 
