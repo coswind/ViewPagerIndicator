@@ -1,17 +1,18 @@
 apply plugin: 'maven'
 
-group = 'com.coswind.viewpagerindicator'
+version = VERSION_NAME
+group = GROUP
 
 artifacts {
-	archives file('TabViewPagerIndicator/build/libs/TabViewPagerIndicator.aar')
+    archives file(ARCHIVE_PATH + ARTIFACT_ID + "-" + VERSION_NAME + ".aar")
 }
 
 uploadArchives {
-	repositories {
-		mavenDeployer {
-			repository(url: "file:///home/coswind/Android/gitrepo/mvn-repo")
-			pom.version  = '1.1-SNAPSHOT'
-			pom.artifactId = 'viewpagerindicator'
-		}
-	}
+    repositories {
+        mavenDeployer {
+            repository(url: LOCAL_REPO_URL)
+            pom.version  = version
+            pom.artifactId = ARTIFACT_ID
+        }
+    }
 }
