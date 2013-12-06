@@ -1,1 +1,1 @@
-include ':TabViewPagerIndicator', ':Example'
+include ':viewpagerindicator', ':Example'
